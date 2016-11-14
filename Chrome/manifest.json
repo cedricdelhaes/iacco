@@ -1,0 +1,22 @@
+{
+  "manifest_version" : 2,
+  "name" : "IACCO Plugin",
+  "description" : "Plugin pour Chrome d'analyse des e-marchands",
+  "version" : "0.1",
+  "permissions":[
+    "activeTab", "tabs", "http://*/*", "https://*/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts":[
+    {
+      "matches":["http://*/*", "https://*/*"],
+      "js" : ["content_script.js"]
+    }
+  ],
+  "browser_action" : {
+    "default_icon" : "iacco.png",
+    "default_popup" : "index.html"
+  }
+}
