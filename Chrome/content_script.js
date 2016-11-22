@@ -25,14 +25,20 @@ function searchLink(search ,sendResponse){
       var reg = /(?:Conditions? Générales? d?e?s? Ventes?)|CGV/i;
       break;
     default:
-      sendResponse({find : "No regexp"})
+      sendResponse(
+        {find : "No regexp"});
   }
 
   //Analyse chaque noeud <a>
   for(let i of link){
     //console.log('IACCO : ' + i.innerText );
     if(reg.test(i.innerText)){
-      sendResponse({find : true});
+      sendResponse(
+        {
+          find : true,
+          value : i.href
+        }
+      );
     }
   }
   sendResponse({find : false})

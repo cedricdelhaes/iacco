@@ -21,12 +21,12 @@ function updateTitle(message){
 //Mettre à jour l'ihm selon la reponse
 function update(id,message){
   if(message.find == undefined){
-    document.getElementById(id).textContent = "Pas de fonction de recherche associé à la demande";
+    document.getElementById(id).textContent = 'Pas de fonction de recherche associé à la demande';
   }else if(message.find == 'No regexp'){
     document.getElementById(id).textContent = "Pas d'expression régulière associé à la demande";
   }else if (message.find){
-    document.getElementById(id).textContent = "Trouvé mais non analysé";
+    document.getElementById(id).innerHTML = 'Trouvé mais non analysé : <a href='+message.value+' target="_blank">lien</a>';
   }else{
-    document.getElementById(id).textContent = "Non trouvé";
+    document.getElementById(id).textContent = 'Non trouvé';
   }
 }
