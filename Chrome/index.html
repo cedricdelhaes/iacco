@@ -3,20 +3,39 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <head>
     <title>IACCO</title>
-    <style></style>
     <script src="script.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css" media="screen" />
   </head>
-  <center><body>
-    <div>Site :</div>
-    <div id="site"></div>
+  <body>
+    <div class="info-title">Propriétaire du site :</div>
+    <div id="owner"></div>
     <br/>
-    <div>Mention légale :</div>
-    <div id="ln"></div><img src="traffic_lights.png" id="traffic_ln" alt=""/>
-    <br/><br/>
-    <div>Conditions générales de vente : </div>
-    <div id="tos"></div><img src="traffic_lights.png" id="traffic_tos" alt=""/>
+    <div class="info-title">Pays de résidence :</div>
+    <div id="localisation"></div>
     <br/>
-    <input type="button" value="Analyser la page" id="analyse"/>
-  </body></center>
+    <div class="info-title">Conforité aux obligations légales :</div>
+    <div id="ln"></div>
+    <br/>
+    <div class="info-title">Conditions générales de ventes : </div>
+    <div id="tos"></div>
+    <br/>
+    <div class="info-title">Contact en cas de litige : </div>
+    <div id="contact"></div>
+    <br/>
+    <div class="info-title">Nombre de litiges en cours : </div>
+    <div id="dispute">Plus tard</div>
+    <br/>
+    <div class="info-title">Réactivité aux traitements des litiges : </div>
+    <div id="reactivity">Plus tard</div>
+    <br/>
+    <div class="info-title">Côte de popularité : </div>
+    <div id="popularity">Plus tard</div>
+    <br/>
+    <div class="button-bottom-page">
+      <input type="button" value="Analyser la page" id="ask-analyse"/><br/>
+      <input type="button" value="Demander un audit" id="ask-audit"/><br/>
+      <input type="button" value="Signaler un abus" id="ask-abuse"/><br/>
+      <input type="button" value="Signaler un litige" id="ask-dispute"/><br/>
+    </div>
+  </body>
 </html>

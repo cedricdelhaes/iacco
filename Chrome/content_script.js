@@ -2,8 +2,9 @@
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
   {
     if(request.action == "getTitle") sendTitle(sendResponse);
-    else if(request.action == "findLn") sendLn(sendResponse);
-    else if(request.action == "findToS") sendTos(sendResponse);
+    else if(request.action == "findLn") searchLink("ln", sendResponse);
+    else if(request.action == "findToS") searchLink("tos", sendResponse);
+    else sendResponse({find : undefined});
   }
 );
 
@@ -12,28 +13,33 @@ function sendTitle(sendResponse){
   sendResponse({title : document.getElementsByTagName("title")[0].innerText});
 };
 
-//Renvoi vrai si les mentions légales sont trouvées
-function sendLn(sendResponse){
+function searchLink(search ,sendResponse){
   var link = document.getElementsByTagName("a");
-  var lnFind = false;
-  for(let i of link){
-    console.log('IACCO : ' + i.innerText );
-    if(i.innerText == "Mentions légales"){
-      lnFind = true;
-    }
-  }
-  sendResponse({ln : lnFind});
-};
 
-//Renvoi vrai si les CVG sont trouvées
-function sendTos(sendResponse){
-  var link = document.getElementsByTagName("a");
-  var toSFind = false;
+  //Change l'expression régulière de recherche selon la demande
+  switch (search) {
+    case "ln":
+      var reg = /Mentions? légales?/i;
+      break;
+    case "tos" :
+      var reg = /(?:Conditions? Générales? d?e?s? Ventes?)|CGV/i;
+      break;
+    default:
+      sendResponse(
+        {find : "No regexp"});
+  }
+
+  //Analyse chaque noeud <a>
   for(let i of link){
-    console.log('IACCO : ' + i.innerText );
-    if(i.innerText == "Conditions générales de ventes" || i.innerText == "Conditions Générales de Vente"){
-      toSFind = true;
+    //console.log('IACCO : ' + i.innerText );
+    if(reg.test(i.innerText)){
+      sendResponse(
+        {
+          find : true,
+          value : i.href
+        }
+      );
     }
   }
-  sendResponse({tos : toSFind});
-};
+  sendResponse({find : false})
+}
