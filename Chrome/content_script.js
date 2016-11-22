@@ -16,9 +16,10 @@ function sendTitle(sendResponse){
 function sendLn(sendResponse){
   var link = document.getElementsByTagName("a");
   var lnFind = false;
+  var reg = /Mentions? légales?/i
   for(let i of link){
-    console.log('IACCO : ' + i.innerText );
-    if(i.innerText == "Mentions légales"){
+    //console.log('IACCO : ' + i.innerText );
+    if(reg.test(i.innerText)){
       lnFind = true;
     }
   }
@@ -30,8 +31,9 @@ function sendTos(sendResponse){
   var link = document.getElementsByTagName("a");
   var toSFind = false;
   for(let i of link){
-    console.log('IACCO : ' + i.innerText );
-    if(i.innerText == "Conditions générales de ventes" || i.innerText == "Conditions Générales de Vente"){
+    //console.log('IACCO : ' + i.innerText );
+    var reg = /(?:Conditions? Générales? d?e?s? Ventes?)|CGV/i
+    if(reg.test(i.innerText)){
       toSFind = true;
     }
   }
